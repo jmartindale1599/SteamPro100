@@ -11,7 +11,29 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+
+        public void Initialize(){ 
+
+            //Create a new Steam instance or to connect to existing whether in process or local
         
+            SteamKit2.SteamClient client = new SteamKit2.SteamClient();
+
+            //A way to access information about individual users and interact with steams overlay
+
+            SteamKit2.SteamFriends friendsInfo;
+
+            //Lets you access and manipulate Steam user data
+
+            SteamKit2.SteamUser.LogOnDetails logOnDetails = new SteamKit2.SteamUser.LogOnDetails();
+
+            //If it works it gets the userID for Steam
+
+            string userId = (logOnDetails.AccountID).ToString();
+            
+            
+
+        }
+
         protected override void Dispose(bool disposing){
 
             if (disposing && (components != null)){
