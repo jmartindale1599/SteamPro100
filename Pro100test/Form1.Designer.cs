@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 
-        public void Initialize(){ 
+        public string SteamInitialize(){ 
 
             //Create a new Steam instance or to connect to existing whether in process or local
         
@@ -28,7 +28,9 @@
 
             //If it works it gets the userID for Steam
 
-            string userId = (logOnDetails.AccountID).ToString();
+            string userId;
+
+            return userId = (logOnDetails.AccountID).ToString();
             
             
 
@@ -54,13 +56,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.isWorkinglbl = new System.Windows.Forms.Label();
+            this.textbtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // isWorkinglbl
+            // 
+            this.isWorkinglbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.isWorkinglbl.AutoSize = true;
+            this.isWorkinglbl.Location = new System.Drawing.Point(623, 9);
+            this.isWorkinglbl.Name = "isWorkinglbl";
+            this.isWorkinglbl.Size = new System.Drawing.Size(165, 25);
+            this.isWorkinglbl.TabIndex = 0;
+            this.isWorkinglbl.Text = "Project Has Loaded";
+            // 
+            // textbtn
+            // 
+            this.textbtn.Location = new System.Drawing.Point(336, 196);
+            this.textbtn.Name = "textbtn";
+            this.textbtn.Size = new System.Drawing.Size(112, 34);
+            this.textbtn.TabIndex = 1;
+            this.textbtn.Text = "TEST";
+            this.textbtn.UseVisualStyleBackColor = true;
+            this.textbtn.Click += new System.EventHandler(this.textbtn_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textbtn);
+            this.Controls.Add(this.isWorkinglbl);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private Label isWorkinglbl;
+        private Button textbtn;
     }
 
 }

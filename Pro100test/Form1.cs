@@ -1,3 +1,5 @@
+using System.ComponentModel.Design;
+
 namespace Pro100test
 {
     public partial class Form1 : Form
@@ -5,6 +7,14 @@ namespace Pro100test
         public Form1()
         {
             InitializeComponent();
+
+
+        }
+
+        private void textbtn_Click(object sender, EventArgs e)
+        {
+            
+            isWorkinglbl.Text = SteamInitialize();
         }
     }
 }
