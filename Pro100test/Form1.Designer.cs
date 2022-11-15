@@ -22,7 +22,7 @@
 
             long personalID = 76561198849685240;
 
-            steamID.Set((uint)personalID,SteamKit2.EUniverse.Public,SteamKit2.EAccountType.ContentServer);
+            steamID.Set((uint)personalID,SteamKit2.EUniverse.Public,SteamKit2.EAccountType.Individual);
 
             client.Connect();
 
@@ -38,11 +38,70 @@
 
             string userId;
 
-            userId = client.SteamID.ToString();
+            //userId = client.SteamID.ToString();
 
-            return userId; //= (logOnDetails.AccountID).ToString();
-            
-            
+            return steamID.ToString(); // = (logOnDetails.AccountID).ToString();
+
+        }
+
+
+
+        string[] listGames = new string[300];
+
+        /// <summary>
+        /// if the method below works as intended it should go to the filepath provided by the user and get the name of all the files in the folder linked to
+        /// make sure to ask for where they can input the filepath for their steam library
+        /// </summary>
+        /// <param name="pathway"></param>
+
+        public void createUserBase(string pathway){
+
+            char[] pathChar = pathway.ToCharArray();
+
+            //takes user input path provided and makes sure it is good to use for file pathing to their steam games folder.
+
+            string appendChars = "";
+
+            foreach (char c in pathChar){
+
+                if (c == '\''){
+
+                    appendChars.Append<char>('\'');
+
+                }
+                
+                if (c != ' '){
+
+                    appendChars.Append<char>(c);
+
+                }
+
+            }
+
+            foreach (string file in Directory.EnumerateFiles(appendChars)){
+
+                int i = 0;
+
+                char[] tempGameName = new char[100];
+
+                string gameName = Path.GetFileName(appendChars);
+
+                foreach (char c in gameName){
+
+                    if(c != '\''){
+
+                        tempGameName.Append<char>(c);
+                    
+                    }
+
+                    i++;
+                                       
+                }
+
+                listGames[i] = tempGameName.ToString();
+
+            }
+
 
         }
 
