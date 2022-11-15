@@ -20,7 +20,8 @@
 
             SteamKit2.SteamID steamID = new SteamKit2.SteamID();
 
-            long personalID = 76561198849685240;
+            //long personalID = 76561198849685240; //idon'tkare
+            long personalID = 76561198119487169; //gotagetfood
 
             steamID.Set((uint)personalID,SteamKit2.EUniverse.Public,SteamKit2.EAccountType.ContentServer);
 
