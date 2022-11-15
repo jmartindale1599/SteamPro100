@@ -14,7 +14,7 @@ namespace Pro100test
         private void textbtn_Click(object sender, EventArgs e)
         {
             
-            isWorkinglbl.Text = SteamInitialize();
+            isWorkinglbl.Text = "No longer used";
         }
     }
 }
