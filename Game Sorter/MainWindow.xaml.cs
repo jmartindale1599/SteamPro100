@@ -23,6 +23,10 @@ namespace Game_Sorter
         public MainWindow()
         {
             InitializeComponent();
+
+            BackendEngine engine = new BackendEngine();
+            engine.Connect();
+
         }
     }
 }

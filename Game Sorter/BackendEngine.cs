@@ -1,56 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
-using SteamKit2.CDN;
-using SteamKit2.Internal;
 
-namespace Pro100test
+namespace Game_Sorter
 {
-    internal class backend
+    internal class BackendEngine
     {
-
-        public string[] getDatabase()
-        {
-
-            //string[] database = new string[1000];
+        
+        /// <summary>
+        /// This Function connects to the data base.
+        /// </summary>
+        public void Connect() {
 
             HttpClient client = new HttpClient();
 
+            //~~//we will have to have ablitly to set the ID and secret later as they change every so often.//~~//
             KeyValuePair<string, string> clientID = new KeyValuePair<string, string>("client_id", "ukinm8oq8njkab73c59c1b0vpmv69h");
-        
             KeyValuePair<string, string> clientSecret = new KeyValuePair<string, string>("client_secret", "rsx7v0kzkpzo5ejwffh3wufpnhz2hv");
-        
             KeyValuePair<string, string> grantType = new KeyValuePair<string, string>("grant_type", "client_credentials");
 
-            client.BaseAddress("https://id.twitch.tv/oauth2/token");
+            client.BaseAddress = new Uri("https://id.twitch.tv/oauth2/token");
             client.DefaultRequestHeaders.Add(clientID.Key, clientID.Value);
             client.DefaultRequestHeaders.Add(clientSecret.Key, clientSecret.Value);
             client.DefaultRequestHeaders.Add(grantType.Key, grantType.Value);
 
-            client.body();
-
-            
-        //var response = await client.PostAsync(call, content);
-
-        //var responseString = await response.Content.ReadAsStringAsync();
-
-        //var responseString = await client.GetStringAsync("http://www.example.com/recepticle.aspx");
-
-            //return database;
-
         }
-
-    /*POST https://api.igdb.com/v4/games
-
-    Client-ID: abcdefg12345
-
-    Authorization: Bearer access12345token
-
-    fields*;*/
-
-}
-
+    }
 }
