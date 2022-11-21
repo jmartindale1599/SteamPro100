@@ -26,7 +26,6 @@ namespace Game_Sorter
             client.DefaultRequestHeaders.Add(clientID.Key, clientID.Value);
             client.DefaultRequestHeaders.Add(clientSecret.Key, clientSecret.Value);
             client.DefaultRequestHeaders.Add(grantType.Key, grantType.Value);
-
         }
     }
 }

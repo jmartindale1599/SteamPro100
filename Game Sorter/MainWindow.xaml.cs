@@ -28,5 +28,12 @@ namespace Game_Sorter
             engine.Connect();
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string test = @"\";
+            test = filePathtxt.Text;
+            testlbl.Content = test;
+        }
     }
 }
