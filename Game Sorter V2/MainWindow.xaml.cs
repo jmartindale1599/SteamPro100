@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Game_Sorter
+namespace Game_Sorter_V2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,17 +23,11 @@ namespace Game_Sorter
         public MainWindow()
         {
             InitializeComponent();
-
-            BackendEngine engine = new BackendEngine();
-            engine.Connect();
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string test = @"\";
-            test = filePathtxt.Text;
-            testlbl.Content = test;
+
         }
     }
 }
