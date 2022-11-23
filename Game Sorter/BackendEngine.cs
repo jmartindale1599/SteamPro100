@@ -14,7 +14,7 @@ namespace Game_Sorter
         /// <summary>
         /// This Function connects to the data base.
         /// </summary>
-        public async string Connect() {
+        public async void Connect() {
 
             HttpClient client = new HttpClient();
 
@@ -33,7 +33,7 @@ namespace Game_Sorter
             
                 
              string resp = await response.Content.ReadAsStringAsync();
-            return resp;
+            //return resp;
 
         }
     }

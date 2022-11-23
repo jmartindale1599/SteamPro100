@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Game Sorter V2": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "IGDB_CLIENT_ID": "ukinm8oq8njkab73c59c1b0vpmv69h",
+        "IGDB_CLIENT_SECRET": "k8rc3jc89pgez5jw7ca4491epgakz2"
+      }
+    }
+  }
+}

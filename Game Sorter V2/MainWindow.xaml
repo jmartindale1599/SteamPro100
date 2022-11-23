@@ -19,7 +19,7 @@
                     <Label Content="Enter File Path" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ex: C:\Program Files (x86)\Steam\steamapps\common" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
                     <Button Name="loadbtn" Content="Load" HorizontalAlignment="Right" Margin="0,8,10,0" VerticalAlignment="Top" Height="64" Width="135" Click="Button_Click"/>
-                    <Label Name="testlbl" Content="Test" HorizontalAlignment="Left" Margin="322,0,0,0" VerticalAlignment="Center"/>
+                    <Label Name="testlbl" Content="Test" HorizontalAlignment="Left" Margin="449,30,0,0" VerticalAlignment="Top"/>
 
                     <ListView Name="VideoGameList" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="10,81,10,10" Grid.RowSpan="2">
                         <ListView.ItemsPanel>
