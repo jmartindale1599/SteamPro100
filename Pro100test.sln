@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pro100test", "Pro100test\Pro100test.csproj", "{771EB35C-C155-4EE1-AC85-B772A4CFC262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game Sorter", "Game Sorter\Game Sorter.csproj", "{6D2669D0-659F-4F7B-A682-99366E81C86F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game Sorter", "Game Sorter\Game Sorter.csproj", "{6D2669D0-659F-4F7B-A682-99366E81C86F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game Sorter V2", "Game Sorter V2\Game Sorter V2.csproj", "{8AE4C156-B861-4A93-A566-7557D5ABF5D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6D2669D0-659F-4F7B-A682-99366E81C86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D2669D0-659F-4F7B-A682-99366E81C86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D2669D0-659F-4F7B-A682-99366E81C86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE4C156-B861-4A93-A566-7557D5ABF5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE4C156-B861-4A93-A566-7557D5ABF5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE4C156-B861-4A93-A566-7557D5ABF5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE4C156-B861-4A93-A566-7557D5ABF5D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

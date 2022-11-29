@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Game_Sorter
         /// <summary>
         /// This Function connects to the data base.
         /// </summary>
-        public void Connect() {
+        public async void Connect() {
 
             HttpClient client = new HttpClient();
 
@@ -22,10 +23,17 @@ namespace Game_Sorter
             KeyValuePair<string, string> clientSecret = new KeyValuePair<string, string>("client_secret", "rsx7v0kzkpzo5ejwffh3wufpnhz2hv");
             KeyValuePair<string, string> grantType = new KeyValuePair<string, string>("grant_type", "client_credentials");
 
-            client.BaseAddress = new Uri("https://id.twitch.tv/oauth2/token");
+            client.BaseAddress = new Uri("https://id.twitch.tv");
             client.DefaultRequestHeaders.Add(clientID.Key, clientID.Value);
             client.DefaultRequestHeaders.Add(clientSecret.Key, clientSecret.Value);
             client.DefaultRequestHeaders.Add(grantType.Key, grantType.Value);
+
+            var url = "/oauth2/token";
+            HttpResponseMessage response = await client.GetAsync(url);
+            
+                
+             string resp = await response.Content.ReadAsStringAsync();
+            //return resp;
 
         }
     }
