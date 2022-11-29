@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IGDB;
 using IGDB.Models;
+//using IGDB.ImageHelper;
 using System.Diagnostics;
 using System.IO;
 
@@ -34,36 +35,55 @@ namespace Game_Sorter_V2
         
         }
 
-        public async Task<string> GetGames(){
-
-                IGDBClient client = new IGDBClient(
-                
+        public async Task<string> GetPictures(string name)
+        {
+            IGDBClient client = new IGDBClient(
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
             
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_SECRET")
             
                 );
 
-            var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: "fields id, name; where id = 4;");
-            
+            var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: ("fields name, artworks.image_id; search \"" + name + "\";  limit 1;"));
             var game = games.First();
-            
-            Debug.WriteLine(game.Name); // id = 4 // name = Thief
+            Debug.WriteLine(game.Artworks.Values.First().ImageId); // id = 4 // name = Thief
+            var artworkImageId = game.Artworks.Values.First().ImageId;
 
-            return game.Name;
+            // Thumbnail
+            var thumb2X = IGDB.ImageHelper.GetImageUrl(imageId: artworkImageId, size: ImageSize.Thumb, retina: true);
+            Debug.WriteLine(thumb2X.ToString());
 
+            return "https:" + thumb2X.ToString();
         }
+        //
+        //"fields id, name; search \"astroneer\";"
 
-        private async void Button_Click(object sender, RoutedEventArgs e){
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> names = new List<string>();
+            List<string> theboys = new List<string>();
 
-            var theboy = await GetGames();
+            names.Add("Astroneer");
+            names.Add("Equilinox");
+            names.Add("Crypt of the NecroDancer");
+            names.Add("Aim Lab");
+            names.Add("Escape Simulator");
 
+            foreach (string name in names)
+            {
+                theboys.Add(await GetPictures(name));
+            }
+
+            this.InitializeComponent();
             
+
+
             //theboy.Delay(5000).ContinueWith(t => {
             //    Debug.WriteLine("lol you waited hahahahaha");
             //});
 
 
+            var theboy = await GetPictures("astroneer");
             testlbl.Content = theboy;
 
             //BackendEngine vented = new BackendEngine();
