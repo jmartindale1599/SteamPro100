@@ -16,36 +16,45 @@ using System.Windows.Shapes;
 using IGDB;
 using IGDB.Models;
 using System.Diagnostics;
+using System.IO;
 
 namespace Game_Sorter_V2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
+    
+    public partial class MainWindow : Window{
+
+        string[] listGames = new string[300];
+
+        public MainWindow(){
+        
             InitializeComponent();
+        
         }
 
-        public async Task<string> GetGames()
-        {
-            IGDBClient client = new IGDBClient(
+        public async Task<string> GetGames(){
+
+                IGDBClient client = new IGDBClient(
+                
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
+            
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_SECRET")
-            );
+            
+                );
 
             var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: "fields id, name; where id = 4;");
+            
             var game = games.First();
+            
             Debug.WriteLine(game.Name); // id = 4 // name = Thief
 
             return game.Name;
+
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+        private async void Button_Click(object sender, RoutedEventArgs e){
 
             var theboy = await GetGames();
 
@@ -80,6 +89,15 @@ namespace Game_Sorter_V2
             //});
             //sussy.Wait();
             //testlbl.Content = BackendEngine.Picture;
+
         }
+
+        private void VideoGameList_SelectionChanged(object sender, SelectionChangedEventArgs e){
+
+
+
+        }
+
     }
+
 }
