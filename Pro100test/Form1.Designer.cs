@@ -1,4 +1,5 @@
-﻿namespace Pro100test{
+﻿namespace Pro100test
+{
 
     partial class Form1{
 
@@ -19,55 +20,52 @@
         /// make sure to ask for where they can input the filepath for their steam library
         /// </summary>
         /// <param name="pathway"></param>
+         
+        public void spitOutGames(){
+
+            for (int i = 0; i < listGames.Length; i++){ 
+            
+                isWorkinglbl.Text += listGames[i] + " ";
+            
+            }
+                
+        }
 
         public void createUserBase(string pathway){
 
-            char[] pathChar = pathway.ToCharArray();
+            //string hardCode = @"C:\Program Files (x86)\Steam\New folder\steamapps\common";
 
-            //takes user input path provided and makes sure it is good to use for file pathing to their steam games folder.
+            //string test = @"C:\Users\jmartindale\source\repos\Pro100test\Pro100test";
 
-            string appendChars = "";
+            string userinput = pathway;
 
-            foreach (char c in pathChar){
+            FolderBrowserDialog pathFinder = new FolderBrowserDialog();
 
-                if (c == '\''){
+            if (pathFinder.ShowDialog() == System.Windows.Forms.DialogResult.OK){ 
+            
+                userinput = pathFinder.SelectedPath;
+            
+                txtPath.Text = userinput;
 
-                    appendChars.Append<char>('\'');
+                DirectoryInfo dInfo = new DirectoryInfo(userinput);
 
-                }
-                
-                if (c != ' '){
+                FileInfo[] files = dInfo.GetFiles();
 
-                    appendChars.Append<char>(c);
+                List<String> fileNames = new List<String>();
+
+                int e = 0;
+
+                foreach (FileInfo file in files){
+
+                    listGames[e] = file.Name;
+
+                    e++;
 
                 }
 
             }
 
-            foreach (string file in Directory.EnumerateFiles(appendChars)){
-
-                int i = 0;
-
-                char[] tempGameName = new char[100];
-
-                string gameName = Path.GetFileName(appendChars);
-
-                foreach (char c in gameName){
-
-                    if(c != '\''){
-
-                        tempGameName.Append<char>(c);
-                    
-                    }
-
-                    i++;
-                                       
-                }
-
-                listGames[i] = tempGameName.ToString();
-
-            }
-
+            spitOutGames();
 
         }
 
@@ -78,7 +76,7 @@
                 components.Dispose();
 
             }
-
+            
             base.Dispose(disposing);
 
         }
@@ -162,6 +160,7 @@
             this.txtPath.Size = new System.Drawing.Size(280, 31);
             this.txtPath.TabIndex = 2;
             this.txtPath.Text = "File Path";
+            this.txtPath.TextChanged += new System.EventHandler(this.txtPath_TextChanged);
             // 
             // tabPage2
             // 
@@ -191,7 +190,6 @@
         #endregion
 
         private Label isWorkinglbl;
-
         private Button btnFindGames;
         private TabControl tabControl1;
         private TabPage tabPage1;

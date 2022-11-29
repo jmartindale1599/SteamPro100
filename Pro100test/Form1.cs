@@ -11,12 +11,25 @@ namespace Pro100test
 
         }
 
+
+
         private void textbtn_Click(object sender, EventArgs e)
         {
 
-            isWorkinglbl.Text = "Path Didn't Find any Games";
+            createUserBase(txtPath.Text);
+
+            //isWorkinglbl.Text = "Path Didn't Find any Games";
+
+            spitOutGames();
+
+        }
+
+        private void txtPath_TextChanged(object sender, EventArgs e)
+        {
+
 
 
         }
+
     }
 }
