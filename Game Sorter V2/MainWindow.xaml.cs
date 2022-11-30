@@ -34,7 +34,8 @@ namespace Game_Sorter_V2
         {
 
             InitializeComponent();
-
+            listboxGames.Items.Clear();
+        
         }
 
         public async Task<string> GetPictures(string name)
@@ -47,6 +48,8 @@ namespace Game_Sorter_V2
                 );
 
             var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: ("fields name, artworks.image_id; search \"" + name + "\";  limit 1;"));
+            try
+            {
             var game = games.First();
             Debug.WriteLine(game.Artworks.Values.First().ImageId); // id = 4 // name = Thief
             var artworkImageId = game.Artworks.Values.First().ImageId;
@@ -56,100 +59,56 @@ namespace Game_Sorter_V2
             Debug.WriteLine(thumb2X.ToString());
 
             return "https:" + thumb2X.ToString();
-
-
-
+            }
+            catch { return "NOT FOUND"; }
+            //return thumb2X.ToString();
         }
         //
         //"fields id, name; search \"astroneer\";"
 
-        public async Task<string> GetTags(string name)
-        {
-            IGDBClient client = new IGDBClient(
-                Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
-
-                Environment.GetEnvironmentVariable("IGDB_CLIENT_SECRET")
-
-                );
-
-            var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: ("fields name, tags; search \"" + name + "\";  limit 1;"));
-
-            var game = games.First();
-
-            int[] tags = game.Tags;
-
-            for (int i = 0; i < tags.Length; i++){
-
-                string tagHolder = tags[i].ToString();
-
-                tagsList.Content += " " + tagHolder;
-
-            }
-
-            return "";
-
-        }
+            List<Gamedudes> theboys = new List<Gamedudes>();
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<string> names = new List<string>();
-            List<string> theboys = new List<string>();
 
-            names.Add("Astroneer");
-            names.Add("Equilinox");
-            names.Add("Crypt of the NecroDancer");
-            names.Add("Aim Lab");
-            names.Add("Escape Simulator");
+            //theboys.Add(new Gamedudes("Astroneer"));
+            //theboys.Add(new Gamedudes("Equilinox"));
+            //theboys.Add(new Gamedudes("Crypt of the NecroDancer"));
+            //theboys.Add(new Gamedudes("Aim Lab"));
+            //theboys.Add(new Gamedudes("Escape Simulator"));
 
-            foreach (string name in names)
+            theboys.Add(new Gamedudes(filePathtxt.Text));
+            //List<string> names = new List<string>();
+            //List<string> theboys = new List<string>();
+
+
+
+            foreach (Gamedudes boy in theboys)
             {
-                theboys.Add(await GetPictures(name));
+                boy.Artwork = (await GetPictures(boy.Name));
             }
 
-            this.InitializeComponent();
+            //lvDataBinding.ItemsSource = theboys;
 
-            //theboy.Delay(5000).ContinueWith(t => {
-            //    Debug.WriteLine("lol you waited hahahahaha");
-            //});
+            //this.InitializeComponent();
 
-
-
-
-            var theboy = await GetPictures("astroneer");
-            testlbl.Content = theboy;
-
-            //BackendEngine vented = new BackendEngine();
-            ///Task t1 = new Task(vented.GetAuthorizationJson);
-            //t1.RunSynchronously();
-            //t1.Wait();
-
-            //vented.GetPicture("Astroneer");
-
-            //testlbl.Content = BackendEngine.auth;
-            //Task<string> sussy = Task<string>.Factory.StartNew(() => {
-            //Task t1 = new Task(vented.GetAuthorizationJson);
-            // t1.Start();
-
-            //Task<string> task = vented.GetPicture("Astroneer");
-            //while(t1.Status == TaskStatus.Running)
-            //{
-
-            //}
-
-
-            //return vented.GetPicture("astroneer").Result.ToString();
-            //});
-            //sussy.Wait();
-            //testlbl.Content = BackendEngine.Picture;
+            //var theboy = await GetPictures("astroneer");
+            //testlbl.Content = theboy;
+            listboxGames.ItemsSource = null;
+            listboxGames.ItemsSource = theboys;
 
             var getTags = await GetTags("blackwake");
 
         }
 
-        private void VideoGameList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private class Gamedudes
         {
-
-
+            public Gamedudes(string name) {
+                this.Name = name;
+                this.Artwork = "";
+            }
+            public string Name { get; set; }
+            public string Artwork { get; set; }
 
         }
 

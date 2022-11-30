@@ -12,27 +12,35 @@
             <TabItem Header="Load Games" Width="200" Height="20" BorderThickness="3" Background="LightGray">
                 <Grid Background="DarkGray">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="89*" />
+                        <RowDefinition Height="667*" />
                     </Grid.RowDefinitions>
-                    <TextBox Name="filePathtxt" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" Height="20"/>
-                    <Label Content="Enter File Path" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Ex: C:\Program Files (x86)\Steam\steamapps\common" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
-                    <Button Name="loadbtn" Content="Load" HorizontalAlignment="Right" Margin="0,8,10,0" VerticalAlignment="Top" Height="64" Width="135" Click="Button_Click"/>
-                    <Label Name="testlbl" Content="Test" HorizontalAlignment="Left" Margin="449,30,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="filePathtxt" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="294" Height="20"/>
+                    <Label Content="Enter Game Name" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Height="26" Width="116"/>
+                    <Button Name="loadbtn" Content="Load" HorizontalAlignment="right" Margin="0,0,10,0" VerticalAlignment="Center" Height="64" Width="135" Click="Button_Click"/>
 
-                    <ListView Name="VideoGameList"  Margin="10,81,10,10" Grid.RowSpan="2">
-                        <ListView.ItemsPanel>
+                    <ListView Name="listboxGames" Margin="10,1,10,10" Grid.Row="4" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="{Binding Artwork}" Stretch="None" Width="200" Height="200"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
+                                <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
                             </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <Label Name="tagsList" Content="Label" Height="129" Width="899"/>
+                        </ListBox.ItemsPanel>
                     </ListView>
+
+
 
 
                 </Grid>
             </TabItem>
+            
             <TabItem Header="Tab Look Up" Width="200" Height="20" BorderThickness="3" Background="LightGray">
 
                 <Grid Background="DarkGray">
@@ -40,12 +48,7 @@
                     <Label Content="Label" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem" Width="200" Height="20" BorderThickness="3" Background="LightGray">
-                <Grid Background="DarkGray"/>
-            </TabItem>
-            <TabItem Header="TabItem" Width="200" Height="20" BorderThickness="3" Background="LightGray">
-                <Grid Background="DarkGray"/>
-            </TabItem>
+            
         </TabControl>
 
     </Grid>
