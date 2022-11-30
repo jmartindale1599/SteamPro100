@@ -27,6 +27,7 @@
                                 <StackPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
+                        <Label Name="tagsList" Content="Label" Height="129" Width="899"/>
                     </ListView>
 
 

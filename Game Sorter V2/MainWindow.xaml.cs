@@ -24,24 +24,26 @@ namespace Game_Sorter_V2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
-    public partial class MainWindow : Window{
+
+    public partial class MainWindow : Window
+    {
 
         string[] listGames = new string[300];
 
-        public MainWindow(){
-        
+        public MainWindow()
+        {
+
             InitializeComponent();
-        
+
         }
 
         public async Task<string> GetPictures(string name)
         {
             IGDBClient client = new IGDBClient(
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
-            
+
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_SECRET")
-            
+
                 );
 
             var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: ("fields name, artworks.image_id; search \"" + name + "\";  limit 1;"));
@@ -54,9 +56,39 @@ namespace Game_Sorter_V2
             Debug.WriteLine(thumb2X.ToString());
 
             return "https:" + thumb2X.ToString();
+
+
+
         }
         //
         //"fields id, name; search \"astroneer\";"
+
+        public async Task<string> GetTags(string name)
+        {
+            IGDBClient client = new IGDBClient(
+                Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
+
+                Environment.GetEnvironmentVariable("IGDB_CLIENT_SECRET")
+
+                );
+
+            var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: ("fields name, tags; search \"" + name + "\";  limit 1;"));
+
+            var game = games.First();
+
+            int[] tags = game.Tags;
+
+            for (int i = 0; i < tags.Length; i++){
+
+                string tagHolder = tags[i].ToString();
+
+                tagsList.Content += " " + tagHolder;
+
+            }
+
+            return "";
+
+        }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -75,12 +107,12 @@ namespace Game_Sorter_V2
             }
 
             this.InitializeComponent();
-            
-
 
             //theboy.Delay(5000).ContinueWith(t => {
             //    Debug.WriteLine("lol you waited hahahahaha");
             //});
+
+
 
 
             var theboy = await GetPictures("astroneer");
@@ -92,7 +124,7 @@ namespace Game_Sorter_V2
             //t1.Wait();
 
             //vented.GetPicture("Astroneer");
-            
+
             //testlbl.Content = BackendEngine.auth;
             //Task<string> sussy = Task<string>.Factory.StartNew(() => {
             //Task t1 = new Task(vented.GetAuthorizationJson);
@@ -110,9 +142,12 @@ namespace Game_Sorter_V2
             //sussy.Wait();
             //testlbl.Content = BackendEngine.Picture;
 
+            var getTags = await GetTags("blackwake");
+
         }
 
-        private void VideoGameList_SelectionChanged(object sender, SelectionChangedEventArgs e){
+        private void VideoGameList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
 
 
