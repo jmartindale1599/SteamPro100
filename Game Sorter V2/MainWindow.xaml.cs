@@ -94,10 +94,14 @@ namespace Game_Sorter_V2
 
             //var theboy = await GetPictures("astroneer");
             //testlbl.Content = theboy;
-            listboxGames.ItemsSource = null;
+            /*listboxGames.ItemsSource = null;
             listboxGames.ItemsSource = theboys;
 
-            var getTags = await GetTags("blackwake");
+            */
+
+            listboxGames.ItemsSource = null;
+
+            listboxGames.ItemsSource = theboys;
 
         }
 
@@ -109,6 +113,58 @@ namespace Game_Sorter_V2
             }
             public string Name { get; set; }
             public string Artwork { get; set; }
+
+        }
+
+        public async void GeneratePerp(string name){
+
+            IGDBClient client = new IGDBClient(
+
+                Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
+
+                Environment.GetEnvironmentVariable("IGDB_CLIENT_SECRET")
+
+                );
+
+            var games = await client.QueryAsync<Character>(IGDBClient.Endpoints.Characters, query: ("fields akas, description, slug, url; search \"" + name + "\";  limit 1;"));
+
+            ReturnDesc.Content = "";
+
+            ReturnDesc.Content = "Names & Aliases:";
+
+            var character = games.First();
+            
+            for(int i = 0; i < games.Length; i++){
+
+                ReturnDesc.Content += character.Slug + "\n";
+
+                if (character.Gender == Gender.Male){
+
+                    ReturnDesc.Content += "Gender: Male \n";
+                
+                }else if (character.Gender == Gender.Female){
+
+                    ReturnDesc.Content += "Gender: Female \n";
+
+                }else {
+
+                    ReturnDesc.Content += "Gender: Other \n";
+
+                }
+
+                ReturnDesc.Content += character.Akas.ToString();
+
+                ReturnDesc.Content += character.Description;
+
+            }
+
+            ReturnSite.Content += character.Url;
+            
+        }
+
+        private void bring_it_up_Click(object sender, RoutedEventArgs e){
+
+            GeneratePerp(userNameInput.Text);
 
         }
 
