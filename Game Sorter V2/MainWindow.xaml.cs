@@ -97,7 +97,6 @@ namespace Game_Sorter_V2
             listboxGames.ItemsSource = null;
             listboxGames.ItemsSource = theboys;
 
-            var getTags = await GetTags("blackwake");
 
         }
 
