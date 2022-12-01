@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="555*"/>
                         <ColumnDefinition Width="439*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Enter Game Character Or Random Name" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="bring_it_up" Content="Search" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Height="49" Width="120" Click="bring_it_up_Click"/>
                     <Label x:Name="ReturnSite" Grid.ColumnSpan="2" Margin="335,21,340,544" FontSize="20"/>
