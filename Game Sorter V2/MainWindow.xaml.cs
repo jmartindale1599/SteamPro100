@@ -130,7 +130,7 @@ namespace Game_Sorter_V2
 
             ReturnDesc.Content = "";
 
-            ReturnDesc.Content = "Names & Aliases:";
+            ReturnDesc.Content = "Name:";
 
             var character = games.First();
             
@@ -152,11 +152,11 @@ namespace Game_Sorter_V2
 
                 }
 
-                ReturnDesc.Content += character.Akas.ToString();
-
                 ReturnDesc.Content += character.Description;
 
             }
+
+            ReturnSite.Content = "";
 
             ReturnSite.Content += character.Url;
             
