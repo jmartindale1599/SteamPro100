@@ -1,5 +1,4 @@
-﻿using Game_Sorter;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -111,31 +110,31 @@ namespace Game_Sorter_V2
 
             var games = await client.QueryAsync<Character>(IGDBClient.Endpoints.Characters, query: ("fields akas, description, slug, url; search \"" + name + "\";  limit 1;"));
 
-            ReturnDesc.Content = "";
+            ReturnDesc.Text = "";
 
-            ReturnDesc.Content = "Name:";
+            ReturnDesc.Text = "Name:";
 
             var character = games.First();
             
             for(int i = 0; i < games.Length; i++){
 
-                ReturnDesc.Content += character.Slug + "\n";
+                ReturnDesc.Text += character.Slug + "\n";
 
                 if (character.Gender == Gender.Male){
 
-                    ReturnDesc.Content += "Gender: Male \n";
+                    ReturnDesc.Text += "Gender: Male \n";
                 
                 }else if (character.Gender == Gender.Female){
 
-                    ReturnDesc.Content += "Gender: Female \n";
+                    ReturnDesc.Text += "Gender: Female \n";
 
                 }else {
 
-                    ReturnDesc.Content += "Gender: Other \n";
+                    ReturnDesc.Text += "Gender: Other \n";
 
                 }
 
-                ReturnDesc.Content += character.Description;
+                ReturnDesc.Text += "Description: " + character.Description;
 
             }
 

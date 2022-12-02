@@ -13,7 +13,8 @@
                 <Grid Background="DarkGray">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="289*"/>
-                        <ColumnDefinition Width="705*"/>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="684*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="89*" />
@@ -21,9 +22,9 @@
                     </Grid.RowDefinitions>
                     <TextBox Name="filePathtxt" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="294" Height="20" Grid.ColumnSpan="2"/>
                     <Label Content="Enter Game Name" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Height="26" Width="116"/>
-                    <Button Name="loadbtn" Content="Load" HorizontalAlignment="Left" Margin="560,0,0,0" VerticalAlignment="Center" Height="64" Width="135" Click="Button_Click" Grid.Column="1"/>
+                    <Button Name="loadbtn" Content="Add" HorizontalAlignment="right" Margin="0,0,10,0" VerticalAlignment="Center" Height="64" Width="135" Click="Button_Click" Grid.Column="2"/>
 
-                    <ListView Name="listboxGames" Margin="10,1,10,10" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
+                    <ListView Name="listboxGames" Margin="10,1,10,10" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.ColumnSpan="3">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -49,14 +50,16 @@
 
                 <Grid Background="DarkGray">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="555*"/>
+                        <ColumnDefinition Width="103*"/>
+                        <ColumnDefinition Width="452*"/>
                         <ColumnDefinition Width="439*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Enter Game Character Or Random Name" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="bring_it_up" Content="Search" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Height="49" Width="120" Click="bring_it_up_Click"/>
-                    <Label x:Name="ReturnSite" Grid.ColumnSpan="2" Margin="335,21,340,544" FontSize="20"/>
-                    <Label x:Name="ReturnDesc" Grid.ColumnSpan="2" Margin="335,378,340,187" FontSize="20"/>
+                    <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <Label Content="Enter Game Character Or Random Name" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Button x:Name="bring_it_up" Content="Search" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Height="49" Width="120" Click="bring_it_up_Click" Grid.ColumnSpan="2"/>
+                    <Label x:Name="ReturnSite" VerticalAlignment="Bottom" Margin="10,0,10,10" FontSize="15" Grid.ColumnSpan="3" Height="71"/>
+                    <Border BorderBrush="white" BorderThickness="500" Grid.ColumnSpan="3" Margin="10,129,10,86"/>
+                    <TextBlock x:Name="ReturnDesc" Grid.ColumnSpan="3" Margin="10,129,10,86" FontSize="20" TextWrapping="Wrap"/>
                 </Grid>
             </TabItem>
 
