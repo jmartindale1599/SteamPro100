@@ -32,7 +32,7 @@ namespace Game_Sorter_V2
 
         public MainWindow()
         {
-
+            //set up project
             InitializeComponent();
             listboxGames.Items.Clear();
         
@@ -40,6 +40,7 @@ namespace Game_Sorter_V2
 
         public async Task<string> GetPictures(string name)
         {
+            //connect to db
             IGDBClient client = new IGDBClient(
                 Environment.GetEnvironmentVariable("IGDB_CLIENT_ID"),
 
@@ -47,64 +48,46 @@ namespace Game_Sorter_V2
 
                 );
 
+            //set up request
             var games = await client.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: ("fields name, artworks.image_id; search \"" + name + "\";  limit 1;"));
             try
             {
+            //take picutre from request
             var game = games.First();
-            Debug.WriteLine(game.Artworks.Values.First().ImageId); // id = 4 // name = Thief
+            Debug.WriteLine(game.Artworks.Values.First().ImageId); 
             var artworkImageId = game.Artworks.Values.First().ImageId;
 
-            // Thumbnail
+            //get the Thumbnail
             var thumb2X = IGDB.ImageHelper.GetImageUrl(imageId: artworkImageId, size: ImageSize.Thumb, retina: true);
             Debug.WriteLine(thumb2X.ToString());
 
+            //return thumbnail
             return "https:" + thumb2X.ToString();
             }
             catch { return "NOT FOUND"; }
-            //return thumb2X.ToString();
         }
-        //
-        //"fields id, name; search \"astroneer\";"
 
             List<Gamedudes> theboys = new List<Gamedudes>();
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            //theboys.Add(new Gamedudes("Astroneer"));
-            //theboys.Add(new Gamedudes("Equilinox"));
-            //theboys.Add(new Gamedudes("Crypt of the NecroDancer"));
-            //theboys.Add(new Gamedudes("Aim Lab"));
-            //theboys.Add(new Gamedudes("Escape Simulator"));
-
+            //create new theboy and give it a name
             theboys.Add(new Gamedudes(filePathtxt.Text));
-            //List<string> names = new List<string>();
-            //List<string> theboys = new List<string>();
 
-
-
+            //get the picture from the name
             foreach (Gamedudes boy in theboys)
             {
                 boy.Artwork = (await GetPictures(boy.Name));
             }
 
-            //lvDataBinding.ItemsSource = theboys;
-
-            //this.InitializeComponent();
-
-            //var theboy = await GetPictures("astroneer");
-            //testlbl.Content = theboy;
-            /*listboxGames.ItemsSource = null;
-            listboxGames.ItemsSource = theboys;
-
-            */
-
+            //clear the listbox
             listboxGames.ItemsSource = null;
-
+            //display the boys
             listboxGames.ItemsSource = theboys;
 
         }
 
+        //gamedudes is how we display the names and artworks. the instance is called the boys.
         private class Gamedudes
         {
             public Gamedudes(string name) {
