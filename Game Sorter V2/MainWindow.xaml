@@ -46,7 +46,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Tab Look Up" Width="200" Height="20" BorderThickness="3" Background="LightGray">
+            <TabItem Header="Character Look Up" Width="200" Height="20" BorderThickness="3" Background="LightGray">
 
                 <Grid Background="DarkGray">
                     <Grid.ColumnDefinitions>
